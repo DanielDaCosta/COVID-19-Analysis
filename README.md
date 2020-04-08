@@ -12,7 +12,7 @@ The project uses a SEIR model. The SEIR model the flow of the population between
 - Infected (I)
 - Recovered/Dead (R)
 
-The model assumes that the popualtion has a fixed size and also that its distributed between only these 4 states. Each of these variables represents the number of people in these groups.
+The model assumes that the popualtion has a fixed size and also that it's distributed between only these 4 states. Each of these variables represents the number of people in these groups.
 The model is governed by 4 differential equations:
 
 - dS/dt = -rho * beta * S * I
