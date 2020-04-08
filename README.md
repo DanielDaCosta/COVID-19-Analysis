@@ -28,7 +28,7 @@ Where:
 - gamma: Recovery rate. gamma = 1/D, where D is average duration of infection.
 
 
-# Results:
+# Results
 
 Detailed study of the distribution of each of the 4 states trough time. It's possible to observe a peak in the number of infected around the forfieth day (around 10% of the total population).
 
