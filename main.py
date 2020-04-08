@@ -49,8 +49,8 @@ plt.xlabel('Days')
 plt.ylabel('Fraction of Population')
 
 plt.title('SEIR model for COVID-19 without Social Distancing')
-plt.show()
 fig.savefig('Images/without_social_distancing.png')
+plt.show()
 
 # Model for Different values of the Social Distancing parameter
 
