@@ -50,6 +50,7 @@ plt.ylabel('Fraction of Population')
 
 plt.title('SEIR model for COVID-19 without Social Distancing')
 plt.show()
+plt.savefig('Images/without_social_distancing.png')
 
 # Model for Different values of the Social Distancing parameter
 
@@ -75,3 +76,4 @@ plt.ylabel('Fraction of Population')
 plt.legend(legend)
 plt.title('SEIR model for COVID-19 with Social Distancing')
 plt.show()
+plt.savefig('Images/social_distancing.png')
