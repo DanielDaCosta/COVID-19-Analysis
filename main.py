@@ -39,7 +39,7 @@ U = model.compile(t)
 
 
 # Model Without Social Distancing
-plt.figure()
+fig = plt.figure()
 S_t = plt.plot(t, U[:, 0])
 E_t = plt.plot(t, U[:, 1])
 I_t = plt.plot(t, U[:, 2])
@@ -50,7 +50,7 @@ plt.ylabel('Fraction of Population')
 
 plt.title('SEIR model for COVID-19 without Social Distancing')
 plt.show()
-plt.savefig('Images/without_social_distancing.png')
+fig.savefig('Images/without_social_distancing.png')
 
 # Model for Different values of the Social Distancing parameter
 
@@ -63,6 +63,7 @@ t = np.linspace(0, t_max, int(t_max/dt) + 1)
 rho_list = [0.4, 0.7, 1]
 colors = ['red', 'green', 'blue']
 legend = []
+fig = plt.figure()
 for i, rho in enumerate(rho_list):
     model = SEIR(beta, alpha, gamma, S0, E0, I0, R0, rho)
     U = model.compile(t)
@@ -75,5 +76,5 @@ plt.xlabel('Days')
 plt.ylabel('Fraction of Population')
 plt.legend(legend)
 plt.title('SEIR model for COVID-19 with Social Distancing')
+fig.savefig('Images/social_distancing.png')
 plt.show()
-plt.savefig('Images/social_distancing.png')
