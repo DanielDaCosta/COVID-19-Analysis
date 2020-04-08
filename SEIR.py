@@ -3,17 +3,20 @@ import numpy as np
 
 class SEIR:
 
-    def __init__(self, beta, alpha, gamma, S0, E0, I0, R0):
+    def __init__(self, beta, alpha, gamma, S0, E0, I0, R0, rho=1):
         """Initalize initial values and model parameters
 
         Args:
-            beta (function): parameter of the model SEIR
-            alpha (function): parameter of the model SEIR
-            gamma (function): parameter of the model SEIR
+            beta (function): average contact rate in the population
+            alpha (function): inverse of the incubation period (1/t_incubation)
+            gamma (function): inverse of the mean infectious
+            period (1/t_infectious)
             S0 (int): initial suceptible population
             E0 (int): initial exposed population
             I0 (int): initial infected population
             R0 (int): initial recovered/dead population
+            rho (function, optional): social distancing effect, where 0
+            represents a completly lockdown and 1, without any lockdown.
 
         Returns:
             None
@@ -34,6 +37,10 @@ class SEIR:
             self.gamma = lambda t: gamma
         else:
             self.gamma = gamma
+        if (isinstance(rho, (int, float))):
+            self.rho = lambda t: rho
+        else:
+            self.rho = rho
 
     def compile(self, timestemp):
         """Apply the SEIR model to the given timestemp
@@ -60,10 +67,11 @@ class SEIR:
         dt = timestemp[1] - timestemp[0]
 
         for t in range(n - 1):
-            # S{t + 1} = S{t} - beta{t}*S{t}*I{t}*dt
-            u[t + 1, 0] = u[t, 0] - (self.beta(t)*u[t, 0]*u[t, 2]) * dt
-            # E{t + 1} = E{t} + (beta{t}*S{t}*I{t} - alpha(t)*E{t})*dt
-            u[t + 1, 1] = u[t, 1] + (self.beta(t)*u[t, 0]*u[t, 2]
+            # S{t + 1} = S{t} - rho(t)*beta{t}*S{t}*I{t}*dt
+            u[t + 1, 0] = u[t, 0] - (self.rho(t)*self.beta(t)*u[t, 0]
+                                     * u[t, 2]) * dt
+            # E{t + 1} = E{t} + (rho(t)*beta{t}*S{t}*I{t} - alpha(t)*E{t})*dt
+            u[t + 1, 1] = u[t, 1] + (self.rho(t)*self.beta(t)*u[t, 0]*u[t, 2]
                                      - self.alpha(t)*u[t, 1]) * dt
             # I{t + 1} = I{t} + (alpha(t)*E{t} - gamma(t)*I{t})*dt
             u[t + 1, 2] = u[t, 2] + (self.alpha(t)*u[t, 1]
