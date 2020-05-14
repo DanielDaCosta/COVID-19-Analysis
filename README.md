@@ -39,9 +39,7 @@ Importance of social distancing to slow the spread of the disease. The lower the
 
 ![](Images/social_distancing.png)
 
-
-
-# References
+# References & Acknowledgement
 
 The values of the parameters, *alpha*, *beta* and *gamma*, for COVID-19 came from:
 - https://www.thelancet.com/journals/langlo/article/PIIS2214-109X(20)30074-7/fulltext
