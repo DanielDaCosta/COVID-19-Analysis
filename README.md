@@ -6,7 +6,7 @@ The project intuition and parameters estimations were retrieved from the article
 
 # Model
 
-The project uses a SEIR model. The SEIR model the flow of the population between 4 states:
+The project uses a SEIR model. The SEIR models the flow of the population between 4 states:
 - Susceptible (S)
 - Exposed (E)
 - Infected (I)
